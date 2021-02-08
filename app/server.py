@@ -31,7 +31,7 @@ def get_usd_course():
     with urlopen("https://1000bankov.ru/kurs/usd/") as r:
         if r.status == 200:
             lines = r.read().decode('utf-8')
-            usd_curse = re.search(r'<div class="cbcourses__value">(.+)</div>', lines)
+            usd_curse = re.search(r'<div class="cbcourses__value">(\d*\.\d*)', lines)
             return float(usd_curse.group(1))
         else:
             raise IncorrectURLError
@@ -42,6 +42,7 @@ class USDRequestHandler(http.server.SimpleHTTPRequestHandler):
         request = self.path.split('/')[1:]
         data = {}
         usd_course = get_usd_course()
+        print("Req ", request)
         if len(request) == 2:
             value = float(request[1])
             currency = request[0].lower()
@@ -72,9 +73,10 @@ class USDRequestHandler(http.server.SimpleHTTPRequestHandler):
 class USDConverterServer:
     def start_server(self):
         logging.basicConfig(level=logging.DEBUG)
-        with http.server.ThreadingHTTPServer(('', PORT), USDRequestHandler) as server:
+        with http.server.HTTPServer(('', PORT), USDRequestHandler) as server:
             print("Started Server at localhost:", PORT)
             server.serve_forever()
+            print("Flushed", PORT)
 
 
 if __name__ == '__main__':

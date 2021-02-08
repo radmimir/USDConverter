@@ -5,7 +5,7 @@ import http.client
 
 class TestServer(unittest.TestCase):
     def setUp(self):
-        server.start_server()
+        pass
 
     def test_do_GET(self):
         conn = http.client.HTTPConnection("", 8000)
