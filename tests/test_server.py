@@ -1,11 +1,17 @@
 import unittest
 from app import server
 import http.client
+from http.server import test, HTTPServer
+import threading
 
 
 class TestServer(unittest.TestCase):
+
     def setUp(self):
-        pass
+        test_thread = threading.Thread(target=test(server.USDRequestHandler, HTTPServer))
+        test_thread.setDaemon(True)
+        test_thread.start()
+        print("passed")
 
     def test_do_GET(self):
         conn = http.client.HTTPConnection("", 8000)

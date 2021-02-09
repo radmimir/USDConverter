@@ -42,7 +42,6 @@ class USDRequestHandler(http.server.SimpleHTTPRequestHandler):
         request = self.path.split('/')[1:]
         data = {}
         usd_course = get_usd_course()
-        print("Req ", request)
         if len(request) == 2:
             value = float(request[1])
             currency = request[0].lower()

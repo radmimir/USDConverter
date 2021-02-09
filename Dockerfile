@@ -1,6 +1,7 @@
 FROM python:3.7
 
 RUN pip install --upgrade pip
-COPY . /app
+COPY ./app /app
 WORKDIR /app
-ENTRYPOINT python ./app/server.py
+EXPOSE 8000
+CMD python /app/server.py
