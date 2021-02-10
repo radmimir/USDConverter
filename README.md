@@ -22,9 +22,13 @@ USD converter server application on SimpleHTTPServer
 You must have ``docker`` tool installed to work with material in this section.
 Docker installation: https://www.docker.com/get-started 
 
-Run in ``/`` section of project::
+To build image from Dockerfile run:
 ```
-    docker build . && docker run 
+    docker build . -t image_name
+```
+Running container from image::
+```
+    docker run image_name
 ```
 Application will be available on ``localhost:8000`` in your browser.
 
@@ -57,7 +61,8 @@ Application will be available on ``localhost:8000`` in your browser.
 
 1. Add more unittests
 2. Edit Readme.md
-3. Convert SimpleHTTPServer to another
+3. Choose another server
 4. Add async
 5. Add authentification
 6. Some comments in code
+7. Config file
