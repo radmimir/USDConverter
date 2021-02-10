@@ -2,10 +2,7 @@ import http.server
 import json
 from urllib.request import urlopen
 import re
-import threading
-import asyncio
 import logging
-import concurrent.futures
 
 PORT = 8000
 
@@ -75,7 +72,6 @@ class USDConverterServer:
         with http.server.HTTPServer(('', PORT), USDRequestHandler) as server:
             print("Started Server at localhost:", PORT)
             server.serve_forever()
-            print("Flushed", PORT)
 
 
 if __name__ == '__main__':

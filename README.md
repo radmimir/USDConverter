@@ -28,7 +28,7 @@ To build image from Dockerfile run:
 ```
 Running container from image::
 ```
-    docker run image_name
+     docker run -p 0.0.0.0:8000:8000 image_name
 ```
 Application will be available on ``localhost:8000`` in your browser.
 
@@ -42,6 +42,16 @@ Application will be available on ``localhost:8000`` in your browser.
 2. RUB->USD convertion:
 ```
    /rub_usd/1000
+```
+Application returns `json` document with currency of resulting value, requested value and calculated value.
+
+Example of json result:
+```
+{
+     "currency": "RUB",
+      "requested_value": 10000.0,
+      "calculated_value": 741192.0
+}
 ```
 ### Manual testing responces
 ----------
